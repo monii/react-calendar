@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const END_POINT = "/B090041/openapi/service/SpcdeInfoService";
+const END_POINT =
+  "http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
 
 const instance = axios.create({
   baseURL: `${END_POINT}`,
