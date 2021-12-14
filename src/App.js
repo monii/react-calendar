@@ -5,7 +5,7 @@ import Calndar from "./container/CalendarContainer";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename="react-calendar/">
         <Routes>
           <Route exact path="/" element={<Calndar />} />
         </Routes>
