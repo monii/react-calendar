@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+## 리액트 달력 :date:
+리액트를 사용해서 달력을 구현 했습니다.  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 결과 
+<img src = "https://github.com/monii/react-calendar/blob/master/assets/react_calendar_img.png" width="80%" height="60%">
 
-## Available Scripts
+배포URL(gitHub pages) :point_right: https://monii.github.io/react-calendar/
 
-In the project directory, you can run:
+## :exclamation: 로컬에서 실행 :exclamation:
+로컬에서 실행시 아래의 파일에서 코맨트아웃 처리를 아래와 같이 수정해 주세요 :grinning:
+```js
+//App.js
+function App() {
+  return (
+    // <div className="App">
+    //   <BrowserRouter basename="react-calendar/">
+    //     <Routes>
+    //       <Route exact path="/" element={<Calndar />} />
+    //     </Routes>
+    //   </BrowserRouter>
+    // </div>
 
-### `npm start`
+    // 로컬용 App
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Calndar />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+```
+```js
+//api.js
+// const END_POINT =
+//   "https://cors-anywhere.herokuapp.com/http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+// 로컬용 END_PONT
+const END_POINT = "/B090041/openapi/service/SpcdeInfoService";
+```
+```js
+//pagckage.json
+ "homepage": "https://monii.github.io/react-calendar",  
+ 
+ :point_up_2: 이부분을 삭제 하지 않고 실행하시면 URL 주소차에서 "http://localhost:3000"으로 실행해주세요
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+위 부분들들 수정하시고 나면 ```npm start```로 로컬에서 ```"http://localhost:3000"``` 으로 실행이 가능합니다.
 
-### `npm test`
+## 기술 스택
+* react-redux 적용
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 기능구형
+* 오늘 날짜 하이라이트
+* 이전달 / 다음달 / 오늘 버튼 클릭시 각각 이전달로 이동, 다음달로 이동 및 오늘 날짜로 이동
+* 일정추가 및 삭제 
+* 공휴일 API로 공휴일 표시
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## :thinking: proxy문제..
+아래의 블로그를 참고해서 ndPoint 앞에 **"https://cors-anywhere.herokuapp.com/"** 붙이는 방법으로 proxy를 임시적으로 우회하는 방법을 적용하고 있습니다.
+```js
+//api.js
+ const END_POINT =
+   "https://cors-anywhere.herokuapp.com/http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
+```
+참고 블로그 :point_right: https://nyang-in.tistory.com/272
