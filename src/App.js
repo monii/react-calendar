@@ -11,6 +11,15 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
+
+    // 로컬용 App
+    // <div className="App">
+    //   <BrowserRouter>
+    //     <Routes>
+    //       <Route exact path="/" element={<Calndar />} />
+    //     </Routes>
+    //   </BrowserRouter>
+    // </div>
   );
 }
 

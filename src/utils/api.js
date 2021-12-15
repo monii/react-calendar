@@ -3,6 +3,9 @@ import axios from "axios";
 const END_POINT =
   "https://cors-anywhere.herokuapp.com/http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService";
 
+// 로컬용 END_PONT
+// const END_POINT = "/B090041/openapi/service/SpcdeInfoService";
+
 const instance = axios.create({
   baseURL: `${END_POINT}`,
   params: {
