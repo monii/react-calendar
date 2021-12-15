@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/react-calendar/static/js/main.ce1f6bfd.chunk.js",
-    "main.js.map": "/react-calendar/static/js/main.ce1f6bfd.chunk.js.map",
+    "main.js": "/react-calendar/static/js/main.c793e6d5.chunk.js",
+    "main.js.map": "/react-calendar/static/js/main.c793e6d5.chunk.js.map",
     "runtime-main.js": "/react-calendar/static/js/runtime-main.2e502756.js",
     "runtime-main.js.map": "/react-calendar/static/js/runtime-main.2e502756.js.map",
     "static/js/2.ca50ebc5.chunk.js": "/react-calendar/static/js/2.ca50ebc5.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.2e502756.js",
     "static/js/2.ca50ebc5.chunk.js",
-    "static/js/main.ce1f6bfd.chunk.js"
+    "static/js/main.c793e6d5.chunk.js"
   ]
 }
