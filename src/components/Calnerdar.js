@@ -95,14 +95,14 @@ function CalnerdarPresenter(props) {
                         >
                           {formatDay}
                         </span>
-                        {restDayList.length && restDayList.length > 0 && (
+                        {restDayList.length && restDayList.length > 0 ? (
                           <RestDayCell
                             restDayList={restDayList}
                             year={formatYear}
                             month={formatMonth}
                             day={formatDay}
                           />
-                        )}
+                        ) : null}
                         {reducerData.scheduleList &&
                           reducerData.scheduleList.length > 0 && (
                             <ScheduleCell
