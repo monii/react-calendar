@@ -4,8 +4,9 @@
 ## 결과 
 <img src = "https://github.com/monii/react-calendar/blob/master/assets/react_calendar_img.png" width="80%" height="60%">
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fe45cf9c-e7f3-4ddb-b6cb-2ba2e4ee299c/deploy-status)](https://app.netlify.com/sites/react-calendar-ex/deploys) 배포URL(gitHub pages) :point_right: https://monii.github.io/react-calendar/  
-공휴일API통신으로 처음 기동시 공휴일 데이터 표시까지 시간이 조금 거릴 수 있습니다. :pensive:
+[![Netlify Status](https://api.netlify.com/api/v1/badges/01714578-b9a8-457d-bb5b-a51c887d2429/deploy-status)](https://app.netlify.com/sites/moniis-calendar/deploys)
+배포 페이지 : [react-calendar](moniis-calendar.netlify.app)</br>
+❕공휴일API통신으로 처음 기동시 공휴일 데이터 표시까지 시간이 조금 거릴 수 있습니다. :pensive:
 
 ## :exclamation: 로컬에서 실행 :exclamation:
 로컬에서 실행시 아래의 파일에서 코맨트아웃 처리를 아래와 같이 수정해 주세요 :grinning:
