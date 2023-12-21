@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import cx from "classnames";
@@ -10,6 +10,7 @@ import {
 import RestDayCell from "./RestDayCell";
 import ScheduleCell from "./ScheduleCell";
 import Modal from "./Modal";
+import { RJ_SCHEDULES } from "../utils/config";
 
 function CalnerdarPresenter(props) {
   const DAY = ["일", "월", "화", "수", "목", "금", "토"];
@@ -29,12 +30,20 @@ function CalnerdarPresenter(props) {
     onClickModalBtn = () => {},
     handleSchedule = () => {},
     onChangeInputVal = () => {},
+    scheduleList = []
   } = props;
 
-  const { data = {} } = useSelector((state) => state.calendar);
-  const reducerData = {
-    scheduleList: data.schedule_item_list || [],
-  };
+  // NOTE: 코드의 변화를 알아보기 위해서 일다는 주석처리
+  // const { data = {} } = useSelector((state) => state.calendar);
+  // const reducerData = {
+  //   scheduleList: data.schedule_item_list || [],
+  // };
+  // const [scheduleList, setScheduleList] = useState([]);
+  // useEffect(() => {
+  //   const scheduleFromLocalStorage = localStorage.getItem(RJ_SCHEDULES);
+  //   const parsedSchedules = JSON.parse(scheduleFromLocalStorage);
+  //   setScheduleList(parsedSchedules);
+  // }, []);
 
   return (
     <Styled.Calender>
@@ -103,16 +112,15 @@ function CalnerdarPresenter(props) {
                             day={formatDay}
                           />
                         ) : null}
-                        {reducerData.scheduleList &&
-                          reducerData.scheduleList.length > 0 && (
-                            <ScheduleCell
-                              scheduleList={reducerData.scheduleList}
-                              year={formatYear}
-                              month={formatMonth}
-                              day={formatDay}
-                              onClickShowModal={onClickShowModal}
-                            />
-                          )}
+                        {scheduleList.length > 0 && (
+                          <ScheduleCell
+                            scheduleList={scheduleList}
+                            year={formatYear}
+                            month={formatMonth}
+                            day={formatDay}
+                            onClickShowModal={onClickShowModal}
+                          />
+                        )}
                       </td>
                     );
                   })}

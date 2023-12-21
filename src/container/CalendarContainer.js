@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { useImmer } from "use-immer";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,13 +20,16 @@ function CalendarContainer() {
     dateList: [],
     restDayList: [],
     isModalShow: false,
+    scheduleList:[]
   };
   const dispatch = useDispatch();
   const { data = {} } = useSelector((state) => state.calendar);
   const reducerData = {
     scheduleList: data.schedule_item_list || [],
   };
+  // NOTE: Immer가 굳이 필요할까?
   const [values, setValues] = useImmer(calendarState);
+  // const [scheduleList, setScheduleList] = useState([]);
 
   // 날짜 리스트 취득
   const getDayArray = () => {
@@ -122,23 +125,33 @@ function CalendarContainer() {
   //일정추가
   const onClickShowModal = ({ e, type }) => {
     const clickedId = e.target.dataset.index;
-    setValues((draft) => {
-      draft.isModalShow = !values.isModalShow;
-      draft.type = type;
-    });
+    console.log("click",clickedId);
     if (type === config.ADD) {
+      // 밑에서 reset을 해주는것 같은데 왜 또 했을까?
+      // setValues((draft) => {
+      //   draft.title = "";
+      //   draft.scheduleDate = "";
+      // });
       setValues((draft) => {
-        draft.title = "";
-        draft.scheduleDate = "";
+        draft.isModalShow = !values.isModalShow;
+        draft.type = type;
       });
     } else if (type === config.DELETE) {
-      const resulet = reducerData.scheduleList.filter(
-        (_, index) => index === Number(clickedId)
+      // const resulet = reducerData.scheduleList.filter(
+      //   (_, index) => index === Number(clickedId)
+      // );
+
+      const schedulesFromLocalStorage = JSON.parse(
+        localStorage.getItem(config.RJ_SCHEDULES)
       );
+     const result = schedulesFromLocalStorage.filter(
+          (_, index) => index === Number(clickedId)
+       );
       setValues((draft) => {
-        draft.title = resulet[0].title;
-        draft.scheduleDate = resulet[0].scheduleDate;
+        draft.title = result[0].title;
+        draft.scheduleDate = result[0].scheduleDate;
         draft.deleteTargetIndex = clickedId;
+        draft.isModalShow = !values.isModalShow;
       });
     }
   };
@@ -155,7 +168,18 @@ function CalendarContainer() {
         title: values.title,
         scheduleDate: values.scheduleDate,
       };
-      await dispatch(CalendarActions.updateScheduleData(formData, type));
+      // await dispatch(CalendarActions.updateScheduleData(formData, type));
+      const prevSchedulesFromLocalStorage = JSON.parse(
+        localStorage.getItem(config.RJ_SCHEDULES)
+      );
+      const prevSchedules =
+        prevSchedulesFromLocalStorage === null
+          ? []
+          : [...prevSchedulesFromLocalStorage];
+      localStorage.setItem(
+        config.RJ_SCHEDULES,
+        JSON.stringify([...prevSchedules, formData])
+      );
       setValues((draft) => {
         draft.isModalShow = !values.isModalShow;
         draft.title = "";
@@ -163,10 +187,16 @@ function CalendarContainer() {
       });
     } else if (type === "delete") {
       e.preventDefault();
-      const formData = {
-        deleteTarget: values.deleteTargetIndex,
-      };
-      await dispatch(CalendarActions.updateScheduleData(formData, type));
+      // const formData = {
+      //   deleteTarget: values.deleteTargetIndex,
+      // };
+      // await dispatch(CalendarActions.updateScheduleData(formData, type));
+      const prevSchedulesFromLocalStorage = JSON.parse(
+        localStorage.getItem(config.RJ_SCHEDULES)
+      );
+      const updatedSchedules = prevSchedulesFromLocalStorage.filter((_,index)=> index !== Number(values.deleteTargetIndex) )
+      localStorage.setItem( config.RJ_SCHEDULES,
+        JSON.stringify(updatedSchedules))
       setValues((draft) => {
         draft.isModalShow = !values.isModalShow;
         draft.title = "";
@@ -178,7 +208,12 @@ function CalendarContainer() {
   useEffect(() => {
     getDayArray();
     getRestDay();
-  }, [values.month, data]); // eslint-disable-line react-hooks/exhaustive-deps
+    const scheduleFromLocalStorage = localStorage.getItem(config.RJ_SCHEDULES);
+    const parsedSchedules = JSON.parse(scheduleFromLocalStorage);
+    setValues((draft) => {
+      draft.scheduleList = parsedSchedules;
+    });
+  }, [values.month]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Calendar
