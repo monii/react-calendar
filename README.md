@@ -8,6 +8,16 @@
 배포 페이지 : [react-calendar](moniis-calendar.netlify.app)</br>
 ❕공휴일API통신으로 처음 기동시 공휴일 데이터 표시까지 시간이 조금 거릴 수 있습니다. :pensive:
 
+## 🔧리팩토링 === 방치한 코드 되돌아보기 프로젝트 :weight_lifting:
+1. UI 버그수정
+2. 새로고침 시 날아가는 일정 내용 수정
+3. 배포 실패 상태 해결
+4. CSS 도전하기
+
+:point_right: 자세한것은 노션에 기재하였습니다. [리액트 캘린더 - 방치한 코드 돌아보기](https://monii0312.notion.site/1-7277f19a9c7241eeaacddc399a8e8a85?pvs=4)
+
+----------------------------------
+:boom: 이전 회사에 취업 할 때 작성한 리드미 입니다. 추후 삭제 예정입니다. :boom:
 ## :exclamation: 로컬에서 실행 :exclamation:
 로컬에서 실행시 아래의 파일에서 코맨트아웃 처리를 아래와 같이 수정해 주세요 :grinning:
 ```js
@@ -53,7 +63,7 @@ const END_POINT = "/B090041/openapi/service/SpcdeInfoService";
 ## 기술 스택
 * react-redux 적용
 
-## 기능구형
+## 기능구현
 * 오늘 날짜 하이라이트
 * 이전달 / 다음달 / 오늘 버튼 클릭시 각각 이전달로 이동, 다음달로 이동 및 오늘 날짜로 이동
 * 일정추가 및 삭제 
